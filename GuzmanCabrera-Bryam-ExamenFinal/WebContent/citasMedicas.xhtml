@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous"></link>
+</h:head>
+<body>
+
+	<h:form name="formulario" onsubmit="this.reset">
+		<h:dataTable value="#{citaBean.listarCitas}" var="c"
+			styleClass="tabla" headerClass="cabeceraTabla"
+			rowClasses="filaPar,filaImpar" class="table">
+			<h:column>
+				<f:facet name="header">Hora</f:facet>#{c.hora}
+                </h:column>
+			<h:column>
+				<f:facet name="header">Fecha</f:facet>#{c.fecha}
+					
+				</h:column>
+
+		</h:dataTable>
+	</h:form>
+	<h:form id="mi_form">
+
+		<ul>
+
+			<li>Fecha: <h:inputText size="25" required="true"
+					requiredMessage="Ingrese la fecha, por favor"
+					value="#{citaBean.fecha}">
+				</h:inputText><br></br>
+			</li>
+
+			<li>Hora: <h:inputText size="10" required="true"
+					value="#{citaBean.hora}">
+					<br></br>
+
+				</h:inputText>
+			</li>
+			<li>Sintomas: <h:inputText size="10" required="true"
+					value="#{citaBean.sintomas}">
+					<br></br>
+
+				</h:inputText>
+			</li>
+
+			<li>Alergias: <h:inputText size="10" required="true"
+					value="#{citaBean.alergias}">
+					<br></br>
+
+				</h:inputText>
+			</li>
+			<li>Enfermedades: <h:inputText size="10"
+					value="#{citaBean.enfermedadesPrevias}">
+					<br></br>
+
+				</h:inputText>
+			</li>
+
+		</ul>
+		<h:message for="mi_form" style="color:red" />
+		<br></br>
+
+		<h:commandButton value="Agregar Cita" type="submit"
+			action="#{citaBean.add}" />
+
+	</h:form>
+	<h:form>
+		<ul>
+
+			<li>Ingrese el numero de cedula para buscar: <h:inputText
+					value="#{citaBean.cedula}">
+				</h:inputText>
+			</li>
+		</ul>
+		<h:commandButton value="Buscar" action="#{citaBean.buscarPaciente()}" />
+
+
+		<h:dataTable value="#{citaBean.paciente}" var="a" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar"
+			class="table">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>#{a.nombre}
+					
+				</h:column>
+			<h:column>
+				<f:facet name="header">Apellidos</f:facet>#{a.apellidos}
+				</h:column>
+			<h:column>
+				<f:facet name="header">Correo</f:facet>#{a.correo}
+									</h:column>
+
+			<h:column>
+				<f:facet name="header">Direccion</f:facet>#{a.direccion}
+					
+		</h:column>
+
+			<h:column>
+				<f:facet name="header">Telefono</f:facet>#{a.telefono}
+					
+		</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</body>
+</html>
