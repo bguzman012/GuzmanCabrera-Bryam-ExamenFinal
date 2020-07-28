@@ -139,7 +139,7 @@ public class CitaBean implements Serializable {
 		}
 		
 		if(ok) {
-			context.addMessage("mi_form", new FacesMessage("No disponible"));
+			context.addMessage("mi_form", new FacesMessage("Horario no disponible"));
 		}else {
 			CitaMedica cita = new CitaMedica(this.fecha, this.hora, this.sintomas, this.alergias, this.enfermedadesPrevias);
 			Paciente paciente = ejbPaciente.find(this.cedula);
@@ -147,6 +147,7 @@ public class CitaBean implements Serializable {
 			cita.setPaciente(paciente);
 			ejbCita.create(cita);
 			this.setListarCitas(ejbCita.findAll());
+			
 			
 		}
 		return null;
